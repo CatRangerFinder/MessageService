@@ -8,7 +8,7 @@ SERVER = "192.168.0.10"
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 CMD_DISCONNECT_MESSAGE = "!DISCONNECT!"
-CMD_SERVER_ACK = "!Msg received!"
+CMD_SERVER_MSG_ACK = "!Msg received!"
 
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(ADDR)
@@ -24,7 +24,7 @@ def msg_handler(msg):
 
     server_msg = client.recv(2048).decode(FORMAT)
 
-    if server_msg == CMD_SERVER_ACK:
+    if server_msg == CMD_SERVER_MSG_ACK:
         print("Sent!")
 
 

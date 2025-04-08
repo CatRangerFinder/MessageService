@@ -7,7 +7,7 @@ SERVER = socket.gethostbyname(socket.gethostname())
 ADDR = (SERVER, PORT)
 FORMAT = 'utf-8'
 CMD_DISCONNECT_MESSAGE = "!DISCONNECT!"
-CMD_SERVER_ACK = "!Msg received!"
+CMD_SERVER_MSG_ACK = "!Msg received!"
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(ADDR)
@@ -28,7 +28,7 @@ def handle_client(conn, addr):
                 connected = False
 
             print(f"[MESSAGE] Address= {addr} Msg= '{msg}' ")
-            conn.send(CMD_SERVER_ACK.encode(FORMAT))
+            conn.send(CMD_SERVER_MSG_ACK.encode(FORMAT))
 
     conn.close()
     print(f"[DISCONNECTED] Address= {addr}")
