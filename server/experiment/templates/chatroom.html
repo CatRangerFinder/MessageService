@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat-Room</title>
+    <link rel="stylesheet" href="../static/chatroom.css" />
+  </head>
+  <body>
+    <div class="message-box">
+      <h2>Chat Room: {{room}}</h2>
+      <div class="messages" id="messages"></div>
+      <div class="inputs">
+        <input
+          type="text"
+          rows="3"
+          placeholder="Message"
+          name="message"
+          id="message"
+        />
+        <button type="button" name="send" id="send-btn" onclick="sendMessage()">
+          Send
+        </button>
+      </div>
+    </div>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"
+      integrity="sha512-q/dWJ3kcmjBLU4Qc47E4A9kTB4m3wuTY7vkFJDTZKjTs8jhyGQnaUrxa0Ytd0ssMZhbNua9hE+E7Qv1j+DyZwA=="
+      crossorigin="anonymous"
+    ></script>
+    <script type="text/javascript" charset="utf-8">
+      var socket = io();
+      socket.on("connect", function () {
+        socket.emit("my event", { data: "I'm connected!" });
+      });
+    </script>
+    <script type="text/javascript">
+      var socketio = io(); // Initialize the socket connection
+
+      const messages = document.getElementById("messages"); // Messages container
+
+      const createMessage = (name, msg) => {
+        const content = `
+          <div class="text">
+            <span>
+              <strong>${name}</strong>: ${msg}
+            </span>
+            <span class="muted">
+              ${new Date().toLocaleString()}
+            </span>
+          </div>
+        `;
+        messages.innerHTML += content; // Append the message to the chat box
+      };
+
+      // Listen for the "message" event from the server
+      socketio.on("message", (data) => {
+        createMessage(data.username, data.message); // Display the message
+      });
+
+      const sendMessage = () => {
+        const message = document.getElementById("message").value;
+        if (message) {
+          // Emit the message to the server
+          socketio.emit("send_message", { message: message });
+          // Clear the input field after sending the message
+          document.getElementById("message").value = "";
+        }
+      };
+    </script>
+  </body>
+</html>

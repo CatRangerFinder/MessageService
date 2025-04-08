@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join-Room</title>
+    <link rel="stylesheet" href="../static/joinroom.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="/">Main</a>
+      <a href="/home">Home</a>
+
+      {% if current_user.is_authenticated %}
+      <!-- If the user is logged in, show the "Logout" link -->
+      <a href="/logout">Logout</a>
+      {% else %}
+      <!-- If the user is not logged in, show the "Login" link -->
+      <a href="/login">Login</a>
+      {% endif %}
+
+      <a class="active" href="/joinroom">Join Room</a>
+      <a href="/createroom">Create Room</a>
+    </div>
+    <form method="POST" action="/joinroom" class="buttons">
+      <h3>Join Room</h3>
+      <div>
+        <label for="join_code">Room Code:</label>
+        <input
+          type="text"
+          placeholder="Code Example: ABCD"
+          name="join_code"
+          required
+        />
+      </div>
+      <button type="submit" name="join">Join</button>
+    </form>
+  </body>
+</html>

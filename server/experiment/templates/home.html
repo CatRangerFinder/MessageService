@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home-page</title>
+    <link rel="stylesheet" href="../static/home.css" />
+  </head>
+
+  <body>
+    <div class="topnav">
+      <a href="/">Main</a>
+      <a class="active" href="/home">Home</a>
+
+      {% if current_user.is_authenticated %}
+        <!-- If the user is logged in, show the "Logout" link -->
+        <a href="/logout">Logout</a>
+      {% else %}
+        <!-- If the user is not logged in, show the "Login" link -->
+        <a href="/login">Login</a>
+      {% endif %}
+
+      <a href="/joinroom">Join Room</a>
+      <a href="/createroom">Create Room</a>
+    </div>
+  </body>
+</html>
