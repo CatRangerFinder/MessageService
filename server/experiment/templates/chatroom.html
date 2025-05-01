@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,12 @@
           name="message"
           id="message"
         />
-        <button type="button" name="send" id="send-btn" onclick="sendMessage()">
+        <button
+          type="button"
+          name="send"
+          id="send-btn"
+          onclick="sendMessage()"
+        >
           Send
         </button>
       </div>
@@ -67,6 +72,21 @@
           document.getElementById("message").value = "";
         }
       };
+    </script>
+    <div class="disconnect-container">
+    <button
+      type="button"
+      name="disconnect"
+      id="disconnect-btn"
+      onclick="disconnect()"
+    >
+      Disconnect
+    </button>
+    </div>
+    <script type="text/javascript">
+      function disconnect() {
+        window.location.href = "/home";
+      }
     </script>
   </body>
 </html>

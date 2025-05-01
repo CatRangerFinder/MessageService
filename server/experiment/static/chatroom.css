@@ -65,3 +65,18 @@
   #message {
     flex: 1;
   }
+
+
+/* give the container the same width as your .message-box
+   and center it in the page, then push contents right */
+.disconnect-container {
+  width: 80vw;            /* match .message-box width */
+  margin: 10px 0 0;    /* 10px top gap, horizontally centered */
+  text-align: right;      /* right-align its contents */
+}
+
+/* optional: style the button itself */
+#disconnect-btn {
+  padding: 6px 12px;
+  font-size: 1rem;
+}

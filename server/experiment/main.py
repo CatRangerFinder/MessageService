@@ -150,7 +150,7 @@ def connect(auth):
         return
 
     join_room(room)
-    send({"username": username, "message": f"{username} has entered the room"}, to=room)
+    send({"username": "SYSTEM", "message": f"{username} has entered the room"}, to=room)
     rooms[room]["members"] += 1
     print(f"{username} joined room {room}")
 
@@ -166,7 +166,7 @@ def disconnect():
         if rooms[room]["members"] <= 0:
             del rooms[room]
 
-    send({"username": username, "message": f"{username} has left the room"}, to=room)
+    send({"username": "SYSTEM", "message": f"{username} has left the room"}, to=room)
     print(f"{username} has left the room {room}")
 
 
@@ -183,6 +183,6 @@ def handle_message(data):
 
 if __name__ == '__main__':
     print("server running")
-    socketio.run(app, host="0.0.0.0", port=5000, debug=True)
+    socketio.run(app, host="0.0.0.0", port=5000, debug=False)
     #socketio.run(app, async_mode='eventlet')
     #socketio.run(app, debug=False, use_reloader=False)#, server='eventlet')
